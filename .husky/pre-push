@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Extract the local and remote branch names from the arguments
+while read local_ref local_sha remote_ref remote_sha
+do
+    # Check if the local branch name matches the specified pattern
+    if [[ "$local_ref" =~ ^refs/heads/(AA-[0-9]+-[a-zA-Z]+|main|develop|release-*|feature-*|hotfix-*)$ ]]; then
+        echo "Pushing to branches with the specified naming convention is allowed."
+        exit 0
+    else
+        echo "Error: Invalid branch name. Branch names must be in the format AA-number-string."
+        exit 1
+    fi
+done
