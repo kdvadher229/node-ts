@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsx  watch ./src/app.ts",
     "start": "node dist/app.js",
-    "dev": "nodemon app.ts --exec 'npm run build'"
+    "dev": "nodemon app.ts --exec 'npm run build'",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
+    "husky": "^8.0.3",
     "nodemon": "^3.1.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"

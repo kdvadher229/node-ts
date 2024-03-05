@@ -1,0 +1,24 @@
+#!/bin/sh
+COMMIT_MSG_FILE=$1
+
+# Example: Check if the commit message is too long
+if [ $(wc -c < "$COMMIT_MSG_FILE") -gt 72 ]; then
+  echo "Commit message is too long (max 72 characters)." >&2
+  exit 1
+fi
+
+# Read the first word from the commit message
+first_word=$(head -n 1 "$COMMIT_MSG_FILE" | awk '{print $1}')
+
+# Check if the first word is one of the allowed prefixes
+case $first_word in
+  "feat" | "fix" | "bug")
+    # Valid commit message
+    exit 0
+    ;;
+  *)
+    # Invalid commit message
+    echo "Error: Commit message must start with 'feat', 'fix', or 'bug'." >&2
+    exit 1
+    ;;
+esac
